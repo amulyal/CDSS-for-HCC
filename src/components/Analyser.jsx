@@ -26,11 +26,21 @@ const inline = {
 
 const Analyser = () => {
   const [singleTumor, setSingleTumor] = useState(0);
+  const [numberTumor, setNumberTumor] = useState(0);
+  const [extraHepatic, setExtraHepatic] = useState(0);
+  const [majorVessel, setMajorVessel] = useState(0);
+  const [criteria, setCriteria] = useState('');
 
   const [open, setOpen] = useState(false);
 
   const handleMilanSubmit = (e) => {
     e.preventDefault();
+    const milan = 0; //check logical expression
+    if (milan) {
+      setCriteria(' met');
+    } else {
+      setCriteria(' not met');
+    }
     setOpen(true);
   };
 
@@ -77,9 +87,9 @@ const Analyser = () => {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={singleTumor}
-                      label="SingleTumor"
-                      onChange={(e) => { setSingleTumor(e.target.value); }}
+                      value={numberTumor}
+                      label="NumberTumor"
+                      onChange={(e) => { setNumberTumor(e.target.value); }}
                     >
                       <MenuItem value={0}>No</MenuItem>
                       <MenuItem value={1}>Yes</MenuItem>
@@ -94,9 +104,9 @@ const Analyser = () => {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={singleTumor}
-                      label="SingleTumor"
-                      onChange={(e) => { setSingleTumor(e.target.value); }}
+                      value={extraHepatic}
+                      label="ExtraHepatic"
+                      onChange={(e) => { setExtraHepatic(e.target.value); }}
                     >
                       <MenuItem value={1}>No</MenuItem>
                       <MenuItem value={0}>Yes</MenuItem>
@@ -111,9 +121,9 @@ const Analyser = () => {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={singleTumor}
-                      label="SingleTumor"
-                      onChange={(e) => { setSingleTumor(e.target.value); }}
+                      value={majorVessel}
+                      label="MajorVessel"
+                      onChange={(e) => { setMajorVessel(e.target.value); }}
                     >
                       <MenuItem value={1}>No</MenuItem>
                       <MenuItem value={0}>Yes</MenuItem>
@@ -137,7 +147,7 @@ const Analyser = () => {
                       Survival Predict of Patient
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      {singleTumor}
+                      Criteria {criteria}
                     </Typography>
                   </Box>
                 </Modal>
