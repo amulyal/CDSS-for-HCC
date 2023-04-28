@@ -25,7 +25,7 @@ const inline = {
   justifyContent: 'center',
 };
 
-const url = 'https://ml-api-6iw9.onrender.com';
+const url = 'https://ml-api-8hhg.onrender.com';
 
 const Metroticket = () => {
   const [singleTumor, setSizeTumor] = useState();
@@ -56,7 +56,7 @@ const Metroticket = () => {
         setSurvivalRate(answer);
       })
       .catch((error) => {
-        console.log(error);
+        setSurvivalRate(error.message);
       });
     setOpen(true);
   };

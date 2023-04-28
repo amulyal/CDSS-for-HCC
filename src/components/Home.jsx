@@ -25,12 +25,12 @@ const Home = () => (
         </p>
       </div>
       <div className="external-links">
-        <ExternalLink href="">
+        <ExternalLink href="https://github.com/amulyal/CDSS-for-HCC">
           Source Code
           <FaGithub />
         </ExternalLink>
 
-        <ExternalLink href="https://react-math-magician.netlify.app/">
+        <ExternalLink href="">
           View Live
           <RiShareBoxFill />
         </ExternalLink>

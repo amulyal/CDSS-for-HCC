@@ -36,7 +36,8 @@ const Analyser = () => {
   const [creatinine, setCreatinine] = useState();
   const [mortalityRate, setMortalityRate] = useState('');
 
-  const [open, setOpen] = useState(false);
+  const [milanOpen, setMilanOpen] = useState(false);
+  const [meldOpen, setMeldOpen] = useState(false);
 
   const isInvalid = (alb) => alb < 0.2 || alb > 10;
 
@@ -49,7 +50,7 @@ const Analyser = () => {
     } else {
       setCriteria(' not met');
     }
-    setOpen(true);
+    setMilanOpen(true);
   };
 
   const handleMeldSubmit = (e) => {
@@ -67,10 +68,12 @@ const Analyser = () => {
     } else {
       setMortalityRate('1.9%.');
     }
-    setOpen(true);
+    setMeldOpen(true);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleMilanClose = () => setMilanOpen(false);
+
+  const handleMeldClose = () => setMeldOpen(false);
 
   return (
     <>
@@ -167,8 +170,8 @@ const Analyser = () => {
                   </CardActions>
                 </div>
                 <Modal
-                  open={open}
-                  onClose={handleClose}
+                  open={milanOpen}
+                  onClose={handleMilanClose}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
@@ -220,8 +223,8 @@ const Analyser = () => {
                   </CardActions>
                 </div>
                 <Modal
-                  open={open}
-                  onClose={handleClose}
+                  open={meldOpen}
+                  onClose={handleMeldClose}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
