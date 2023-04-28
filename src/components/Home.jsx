@@ -26,16 +26,18 @@ const Home = () => (
       </div>
       <div className="external-links">
         <ExternalLink href="https://github.com/amulyal/CDSS-for-HCC">
-          Source Code
+          Website Code
           <FaGithub />
         </ExternalLink>
-
-        <ExternalLink href="">
+        <ExternalLink href="https://github.com/amulyal/CDSS-for-HCC">
+          ML Code
+          <FaGithub />
+        </ExternalLink>
+        <ExternalLink href="https://cdssforhcc.netlify.app/">
           View Live
           <RiShareBoxFill />
         </ExternalLink>
       </div>
-      <br />
       <p style={{ fontSize: '10px' }}> Project by Dept. of ISE, JSSATE, Bengaluru</p>
     </div>
     <div className="home-img">
