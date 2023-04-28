@@ -15,13 +15,13 @@ const Home = () => (
           <br />
           This is a tool to predict the survival of patients with Hepatocellular Carcinoma.
           <p>
-            This tool utilises existing research from
+            The tool calculates survival rates based on a varied combination of symptoms.
+            It utilises existing research from
             <a href="https://www.mdcalc.com/"> MD+Calc website. </a>
-            The symptoms are selected based on the records in hospitals based in Mysore.
           </p>
-          The tool calculates survival rates based on a varied combination of symptoms.
-          The Milan criteria calculator is a tool to predict if the patient is eligible for
-          liver transplantation is there exists an underlying Cirrhosis condition.
+          The tool Metroticket Calculator is trained using ML algorithms.
+          The data is based on the records in hospitals located in Mysore.
+          This website acts a decision support system accessible to general public.
         </p>
       </div>
       <div className="external-links">
@@ -38,6 +38,7 @@ const Home = () => (
           <RiShareBoxFill />
         </ExternalLink>
       </div>
+      <br />
       <p style={{ fontSize: '10px' }}> Project by Dept. of ISE, JSSATE, Bengaluru</p>
     </div>
     <div className="home-img">
