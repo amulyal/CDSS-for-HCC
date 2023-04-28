@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import SurvivalPrediction from './components/SurvivalPrediction';
 import Analyser from './components/Analyser';
+import Metroticket from './components/Metroticket';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="predictor" element={<SurvivalPrediction />} />
         <Route path="analyser" element={<Analyser />} />
+        <Route path="metroticket" element={<Metroticket />} />
       </Routes>
     </>
   );

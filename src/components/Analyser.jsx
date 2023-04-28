@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../stylesheets/Page.css';
 import {
   Card, CardContent, FormControl, InputLabel, Select, Button, CardActions,
-  Typography, Box, Modal, MenuItem,
+  Typography, Box, Modal, MenuItem, TextField,
 } from '@mui/material';
 
 const style = {
@@ -25,21 +25,47 @@ const inline = {
 };
 
 const Analyser = () => {
-  const [singleTumor, setSingleTumor] = useState(0);
-  const [numberTumor, setNumberTumor] = useState(0);
+  const [singleTumour, setSingleTumour] = useState(0);
+  const [numberTumour, setNumberTumour] = useState(0);
   const [extraHepatic, setExtraHepatic] = useState(0);
   const [majorVessel, setMajorVessel] = useState(0);
   const [criteria, setCriteria] = useState('');
 
+  const [inr, setINR] = useState();
+  const [tbilirubin, setTBilirubin] = useState();
+  const [creatinine, setCreatinine] = useState();
+  const [mortalityRate, setMortalityRate] = useState('');
+
   const [open, setOpen] = useState(false);
+
+  const isInvalid = (alb) => alb < 0.2 || alb > 10;
 
   const handleMilanSubmit = (e) => {
     e.preventDefault();
-    const milan = 0; //check logical expression
+    const milan = ((!singleTumour && numberTumour && extraHepatic)
+      || (singleTumour && numberTumour && majorVessel));
     if (milan) {
       setCriteria(' met');
     } else {
       setCriteria(' not met');
+    }
+    setOpen(true);
+  };
+
+  const handleMeldSubmit = (e) => {
+    e.preventDefault();
+    const meld = 10 * [(0.957 * Math.log(creatinine)) + (0.378 * Math.log(tbilirubin))
+      + (1.12 * Math.log(inr))] + 6.43;
+    if (meld >= 40) {
+      setMortalityRate('71.3%.');
+    } else if (meld >= 30 && meld < 40) {
+      setMortalityRate('52.6%.');
+    } else if (meld >= 20 && meld < 30) {
+      setMortalityRate('19.6%.');
+    } else if (meld >= 10 && meld < 20) {
+      setMortalityRate('6.0%.');
+    } else {
+      setMortalityRate('1.9%.');
     }
     setOpen(true);
   };
@@ -53,10 +79,10 @@ const Analyser = () => {
         <div className="container">
           <div className="calculator">
             <h3 className="headingtitle">
-              Milan Criteria for Hepato Cellular Carcinoma
+              Milan Criteria for HCC Liver Transplant.
               <br />
             </h3>
-            Predicts survival in HCC patients.
+            Suitability of patients for liver transplant.
             <br />
             <br />
           </div>
@@ -68,11 +94,12 @@ const Analyser = () => {
                   <FormControl>
                     <InputLabel id="demo-simple-select-label">Select</InputLabel>
                     <Select
+                      required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={singleTumor}
+                      value={singleTumour}
                       label="SingleTumor"
-                      onChange={(e) => { setSingleTumor(e.target.value); }}
+                      onChange={(e) => { setSingleTumour(e.target.value); }}
                     >
                       <MenuItem value={0}>No</MenuItem>
                       <MenuItem value={1}>Yes</MenuItem>
@@ -85,11 +112,12 @@ const Analyser = () => {
                   <FormControl>
                     <InputLabel id="demo-simple-select-label">Select</InputLabel>
                     <Select
+                      required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={numberTumor}
+                      value={numberTumour}
                       label="NumberTumor"
-                      onChange={(e) => { setNumberTumor(e.target.value); }}
+                      onChange={(e) => { setNumberTumour(e.target.value); }}
                     >
                       <MenuItem value={0}>No</MenuItem>
                       <MenuItem value={1}>Yes</MenuItem>
@@ -102,6 +130,7 @@ const Analyser = () => {
                   <FormControl>
                     <InputLabel id="demo-simple-select-label">Select</InputLabel>
                     <Select
+                      required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={extraHepatic}
@@ -119,6 +148,7 @@ const Analyser = () => {
                   <FormControl>
                     <InputLabel id="demo-simple-select-label">Select</InputLabel>
                     <Select
+                      required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={majorVessel}
@@ -144,10 +174,66 @@ const Analyser = () => {
                 >
                   <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                      Survival Predict of Patient
+                      Suitability Assesment of Patient
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Criteria {criteria}
+                      Criteria:
+                      {criteria}
+                    </Typography>
+                  </Box>
+                </Modal>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+        {/* ---------COMPONENT 2-------------- */}
+        <div className="container">
+          <div className="calculator">
+            <h3 className="headingtitle">
+              Model for End Stage Liver Disease
+              <br />
+            </h3>
+            Short-term survival for transplant planning.
+            <br />
+            <br />
+          </div>
+          <Card>
+            <CardContent>
+              <form id="login">
+                <div style={inline}>
+                  <TextField error={isInvalid(inr)} helperText={isInvalid(inr) ? 'Out of range value' : ''} required id="inr" label="INR" value={inr} onChange={(e) => { setINR(e.target.value); }} />
+                  <Typography>no units</Typography>
+                </div>
+                <br />
+                <div style={inline}>
+                  <TextField error={isInvalid(tbilirubin)} helperText={isInvalid(tbilirubin) ? 'Out of range value' : ''} required id="tbilirubin" label="TBilirubin" value={tbilirubin} onChange={(e) => { setTBilirubin(e.target.value); }} />
+                  <Typography>in mg/dL</Typography>
+                </div>
+                <br />
+                <div style={inline}>
+                  <TextField error={isInvalid(creatinine)} helperText={isInvalid(creatinine) ? 'Out of range value' : ''} required id="creatinine" label="Creatinine" value={creatinine} onChange={(e) => { setCreatinine(e.target.value); }} />
+                  <Typography>in mg/dL</Typography>
+                </div>
+                <div style={inline}>
+                  <CardActions>
+                    <Button variant="outlined" size="medium" type="submit" onClick={handleMeldSubmit}>Submit</Button>
+                  </CardActions>
+                </div>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                      Survival Prediction of Patient with end-stage liver disease
+                      -for transplant planning.
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      Based on MELD Score, the mortality rate is
+                      {' '}
+                      {mortalityRate}
                     </Typography>
                   </Box>
                 </Modal>

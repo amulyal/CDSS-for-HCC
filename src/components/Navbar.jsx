@@ -15,22 +15,29 @@ const Navbar = () => (
           Home
         </NavLink>
       </li>
-      <li className="divider" />
+      <li className="linkItem">
+        <NavLink
+          to="metroticket"
+          end
+          className={({ isActive }) => (isActive ? 'activelink' : undefined)}
+        >
+          Tool 1
+        </NavLink>
+      </li>
       <li className="linkItem">
         <NavLink
           to="predictor"
           className={({ isActive }) => (isActive ? 'activelink' : undefined)}
         >
-          Predictor
+          Tool 2
         </NavLink>
       </li>
-      <li className="divider" />
       <li className="linkItem">
         <NavLink
           to="analyser"
           className={({ isActive }) => (isActive ? 'activelink' : undefined)}
         >
-          Analyser
+          Tool 3
         </NavLink>
       </li>
     </ul>

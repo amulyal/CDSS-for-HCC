@@ -6,6 +6,10 @@
   justify-content: space-between;
 }
 
+.container {
+  justify-content: space-between;
+}
+
 .inline {
   display: 'flex';
   align-items: 'center';
@@ -22,11 +26,12 @@
   text-shadow: 2px 2px 5px #2f2e2e;
 }
 
-.calculator {
-  align-self: center;
+.container {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.calculator > div {
+.calculator>div {
   width: 30em;
   padding: 1em;
   height: 70vh;
@@ -64,7 +69,7 @@
   box-shadow: inset 4px 4px 4px #c1c1c1, -4px -4px 4px #ddd;
 }
 
-.display > p {
+.display>p {
   border-radius: 10px;
 }
 

@@ -29,9 +29,10 @@ const SurvivalPrediction = () => {
   const [score, setScore] = useState(0);
   const [grade, setGrade] = useState(0);
   const [medianSurvival, setMedianSurvival] = useState('');
+
   const [open, setOpen] = useState(false);
 
-  const isAlBiValid = (alb) => alb < 0.2 || alb > 10;
+  const isInvalid = (alb) => alb < 0.2 || alb > 10;
 
   const handleAlbiSubmit = (e) => {
     e.preventDefault();
@@ -73,12 +74,12 @@ const SurvivalPrediction = () => {
             <CardContent>
               <form id="login">
                 <div style={inline}>
-                  <TextField error={isAlBiValid(albumin)} helperText={isAlBiValid(albumin) ? 'Out of range value' : ''} required id="albumin" label="Albumin" value={albumin} onChange={(e) => { setAlbumin(e.target.value); }} />
+                  <TextField error={isInvalid(albumin)} helperText={isInvalid(albumin) ? 'Out of range value' : ''} required id="albumin" label="Albumin" value={albumin} onChange={(e) => { setAlbumin(e.target.value); }} />
                   <Typography>in mg/dL</Typography>
                 </div>
                 <br />
                 <div style={inline}>
-                  <TextField error={isAlBiValid(albumin)} helperText={isAlBiValid(albumin) ? 'Out of range value' : ''} required id="bilirubin" label="Bilirubin" value={bilirubin} onChange={(e) => { setBilirubin(e.target.value); }} />
+                  <TextField error={isInvalid(albumin)} helperText={isInvalid(albumin) ? 'Out of range value' : ''} required id="bilirubin" label="Bilirubin" value={bilirubin} onChange={(e) => { setBilirubin(e.target.value); }} />
                   <Typography>in mg/dL</Typography>
                 </div>
                 <div style={inline}>
