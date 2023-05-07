@@ -19,9 +19,8 @@ const Home = () => (
             It utilises existing research from
             <a href="https://www.mdcalc.com/"> MD+Calc website. </a>
           </p>
-          The tool Metroticket Calculator is trained using ML algorithms.
-          The data is based on the records in hospitals located in Mysore.
-          This website acts a decision support system accessible to general public.
+          The data utilised is based on the records in hospitals located in Mysore, Karnataka.
+          This website acts a decision support system to aid practitioners.
         </p>
       </div>
       <div className="external-links">
@@ -29,7 +28,7 @@ const Home = () => (
           Website Code
           <FaGithub />
         </ExternalLink>
-        <ExternalLink href="https://github.com/amulyal/CDSS-for-HCC">
+        <ExternalLink href="https://github.com/amulyal/ML-for-HCC">
           ML Code
           <FaGithub />
         </ExternalLink>
